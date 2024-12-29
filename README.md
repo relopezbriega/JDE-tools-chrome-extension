@@ -22,5 +22,9 @@ For more information on Julian dates in JD Edwards, visit [this blog post](https
 
 ## License
 This project is licensed under the MIT License. JDE-tools-chrome-extension
-My JDE tools Chrome Extension
+
+/home/raul/.config/google-chrome/Default/Extensions/njpneibpplcgghbjcbfhcdcfigjnaaha
+
+
+
 

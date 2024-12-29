@@ -1,8 +1,9 @@
 {
-    "name": "name",
-    "description": "description",
-    "authors": "author",
+    "name": "jde-tools-chrome-extension",
+    "description": "Chrome extension for JDE tools - Julian date converter and batch report utilities",
+    "authors": "Raul E Lopez Briega",
     "version": "1.0.0",
-    "main": "pathToMain",
+    "license": "MIT",
+    "main": "/src",
     "dependencies": {}
 }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDE Tools</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup" style="margin: 0; overflow: hidden; min-height: 200px">
+        <h1>JDE Tools</h1>
+        <p>JDE julian date converter and JDE Batch DS import tool</p>
+
+        <div class="converter-container">
+            <!-- Single Date Converter -->
+            <div class="converter-section">
+                <h3 class="section-title">Convert Date to Julian</h3>
+                <div class="input-wrapper">
+                    <input type="date" id="gregorian-date" class="date-input" placeholder="Select a date">
+                    <span id="julian-date" class="julian-display"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="converter-container">
+            <!-- Single Date Converter -->
+            <div class="converter-section">
+                <h3 class="section-title">Convert Julian to Date</h3>
+                <div class="input-wrapper">
+                    <input type="text" id="julian-date" class="julian-input" placeholder="Julian Date ex. 124044">
+                    <span id="grego-date" class="grego-display"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-container">
+            <a href="date-converter-tool.html" class="tool-link">Open Date converter Tool</a>
+        </div>
+
+        <div class="tool-container">
+            <a href="batch-ds-import-tool.html" class="tool-link">Open Batch DS Import Tool</a>
+        </div>
+
+        <div class="tool-container">
+            <a href="https://relopezbriega.github.io/conversor-fecha-juliana/" target="_blank" class="tool-link">Visit Extension Page</a>
+        </div>
+
+        <div class="tool-container">
+            <a href="https://relopezbriega.github.io/" target="_blank" class="tool-link">About the Author</a>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
