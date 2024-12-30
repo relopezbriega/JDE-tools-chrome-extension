@@ -9,7 +9,7 @@ function JDE_DS_import() {
         alert("This is no a JD Edwards Data selection page. Please open a Data Selection page and try again.");
     } else {
 
-        createPopup();
+        createPopup(hasContentWindow);
     }
 
     var iObj = window.frames['e1menuAppIframe'].contentWindow?.document || window.frames['e1menuAppIframe'].document;
@@ -22,17 +22,19 @@ function JDE_DS_import() {
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                inpVals = e.target.result.split('\n');
+            const inpVals = e.target.result.split('\n');
+				console.log(inpVals);
+				data_import(inpVals);
             };
             reader.readAsText(file);
         }
-        data_import(inpVals);
+		
     });
 
     // manual upload handling
     document.getElementById('importDS').addEventListener('click', function(e) {
         
-        inpVals = document.getElementById('importValues').value.replace(/(\\r\\n)/g,',').replace(/(\\n)/g,',').split(',');
+        inpVals = document.getElementById('importValues').value.split('\n');
         data_import(inpVals);
     });
 
@@ -41,9 +43,24 @@ function JDE_DS_import() {
 
 // Crear e inyectar el popup flotante
 function createPopup() {
-    if (document.getElementById('JDEcustomPopup')) return;
+	
+	doc = document;
+    
+	var blanket = doc.createElement("div");
+    blanket.id = "blanket";
+    blanket.style.background = "#111;";
+    blanket.style.filter = "alpha(opacity=65)";
+    blanket.style.opacity = "0.65";
+    blanket.style.position = "absolute";
+    blanket.style.zIndex = "9001";
+    blanket.style.top = 0;
+    blanket.style.left = 0;
+    blanket.style.width = "100%";
+    blanket.style.height = "100%";
+	
+    if (doc.getElementById('JDEcustomPopup')) return;
 
-    const popup = document.createElement('div');
+    const popup = doc.createElement('div');
     popup.id = 'JDEcustomPopup';
     popup.innerHTML = `
         <div class="popup-content">
@@ -81,120 +98,135 @@ function createPopup() {
     `;
 
     // Estilizar el popup
-    const style = document.createElement('style');
+    const style = doc.createElement('style');
     style.textContent = `
         #JDEcustomPopup {
-            position: fixed;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-            font-size: small;
-            margin: 12px;
-            background-color:rgb(51, 49, 49); 
+            position: absolute;
+			width: 600px;
+			height: 400px;
+			border: 5px solid rgb(74, 74, 74);
+			z-index: 9002;
+			text-align: center;
+			top: 149.5px;
+			left: 533px;
+			background-color:rgb(51, 49, 49); 
             color: #FBF1C7;
             border-radius: 8px;
-        }
+		}
         .popup-content {
-            padding: 20px;
+            padding: 20px !important ;
         }
         .popup-title {
-            color: #FBF1C7;
+            color: #FBF1C7 !important ;
         }
         .popup-file {
-            color: #FBF1C7;
+            color: #FBF1C7 !important ;
         }
 
         .upload-section {
-            margin-bottom: 20px;
+            margin-bottom: 20px !important ;
         }
 
         .file-input {
-            display: none;
+            display: none !important ;
         }
 
         .file-label {
-            display: inline-block;
-            padding: 12px 20px;
-            background: #f3f4f6;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #374151; 
+            display: inline-block !important ;
+            padding: 12px 20px !important ;
+            background: #f3f4f6 !important ;
+            border-radius: 8px !important ;
+            cursor: pointer !important ;
+            transition: all 0.2s ease !important ;
+            color: #374151 !important ;
         }
 
         .file-label:hover {
-            background: #e5e7eb;
+            background: #e5e7eb !important ;
         }
 
         .file-info {
-            display: block;
-            font-size: 12px;
-            color: #6b7280;
-            margin-top: 4px;
+            display: block !important ;
+            font-size: 12px !important ;
+            color: #6b7280 !important ;
+            margin-top: 4px !important ;
         }
 
         /* Manual Input Styles */
         .manual-input-section {
-            margin-bottom: 20px;
+            margin-bottom: 20px !important ;
         }
 
         .input-label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
+            display: block !important ;
+            margin-bottom: 8px !important ;
+            font-size: 14px !important ;
         }
 
         .batch-input {
-            width: 90%;
-            height: 120px;
-            padding: 12px;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 8px;
-            font-size: 14px;
-            resize: vertical;
+            width: 90% !important ;
+            height: 120px !important ;
+            padding: 12px !important ;
+            border: 1.5px solid #e5e7eb !important ;
+            border-radius: 8px !important ;
+            font-size: 14px !important ;
+            resize: vertical !important ;
         }
 
         /* Button Styles */
         .convert-button {
-            background: #2563eb;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 5px;
+            background: #2563eb !important ;
+            color: white !important ;
+            padding: 12px 24px !important ;
+            border: none !important ;
+            border-radius: 8px !important ;
+            font-size: 15px !important ;
+            font-weight: 500 !important ;
+            cursor: pointer !important ;
+            transition: all 0.2s ease !important ;
+            margin-top: 5px !important ;
         }
 
         .convert-button:hover {
-            background: #1d4ed8;
+            background: #1d4ed8 !important ;
         }
+		.close-btn {
+			position:absolute;
+			top:0;
+			right:0;
+		}
     `;
-
-    document.body.appendChild(popup);
-    document.head.appendChild(style);
+	doc.body.appendChild(blanket);
+    doc.body.appendChild(popup);
+    doc.head.appendChild(style);
 
     // Cerrar popup con el botón de cerrar
-    document.querySelector('.close-btn').onclick = () => {
+    doc.querySelector('.close-btn').onclick = () => {
         popup.remove();
         style.remove();
     };
 }
 
 function data_import(inpVals) {
+	
+	var iObj = window.frames['e1menuAppIframe'].contentWindow?.document || window.frames['e1menuAppIframe'].document;
+    var actionURL = iObj.forms['JDE'].action;
     
     var xmlHttp = false;try {xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');} catch (e) {try {xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');} catch (e2) {xmlHttp = false;}}
 
     if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {xmlHttp = new XMLHttpRequest();}
 
     var count = 0, arrLength=inpVals.length;
-    var closeButton = document.getElementById('closeButton');
+    
 
     times = window.setInterval(function(){
-        if (arrLength <= count) {times = clearTimeout(times);closeButton.onclick();}
+        if (arrLength <= count) {
+			times = clearTimeout(times);
+			var e2 = document.getElementById('blanket');
+			e2.parentNode.removeChild(e2);
+			var e1 = document.getElementById('popUpDiv');
+			e1.parentNode.removeChild(e1);
+			}
         else {
             actionURL = iObj.forms['JDE'].action;
             var EtfList = inpVals[count];
