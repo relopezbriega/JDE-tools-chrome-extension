@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JDE Date Converter Tool</title>
+    <link rel="stylesheet" href="iframe.css">
+    <script src="iframe.js" type="module"></script>
+</head>
+<body>
+    <h1>JDE Date Converter Tool</h1>
+    <!-- Batch Converter -->
+    <div class="converter-section">
+        <h3 class="section-title">Multiple Dates Conversion</h3>
+
+        
+        <div class="selection-method">
+            <label for="convert-method" class="input-label">Select conversion method:</label>
+        <select id="convert-method" >
+            <option value="fromJulian" selected>From Julian to Gregorian
+            <option value="fromGrego">From Gregorian to Julian
+        </select>
+        </div>
+        
+        <!-- File Upload -->
+        <div class="upload-section">
+            <h3>Upload file:</h3>
+            <input type="file" id="csvFile" accept=".csv" class="file-input">
+            <label for="csvFile" class="file-label">
+                Upload CSV file
+                <span class="file-info">File format: CSV with dates, one date for row</span>
+            </label>
+        </div>
+
+        <!-- Manual Input -->
+        <div class="manual-input-section">
+            <label for="batchDates" class="input-label">or paste here (one date for row):</label>
+            <textarea id="batchDates" class="batch-input" 
+                      placeholder="124044 or 2024-02-13&#10;123365 or 2023-12-31&#10;124274 or 2024-09-30"></textarea>
+        </div>
+
+        <button id="convertBatch" class="convert-button">Convert Dates</button>
+
+        <!-- Results Table -->
+        <div id="resultsContainer" class="results-container hidden">
+            <h4 class="results-title">Results</h4>
+            <div class="table-controls">
+                <button id="copyResults" class="convert-button">Copy Results</button>
+                <button id="downloadCSV" class="convert-button">Download CSV</button>
+            </div>
+            <div class="table-wrapper">
+                <table id="resultsTable" class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Original Date</th>
+                            <th>Date Converted</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

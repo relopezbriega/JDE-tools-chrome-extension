@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JDE DS Import Tool</title>
+    <link rel="stylesheet" href="iframe.css">
+    <script src="ds-iframe.js" type="module"></script>
+</head>
+<body>
+    <h1>JDE DS Import Tool</h1>
+    <!-- File Upload -->
+    <div class="upload-section">
+        <h3>Upload file:</h3>
+        <input type="file" id="csvFile" accept=".csv" class="file-input">
+        <label for="csvFile" class="file-label">
+            Upload CSV file
+            <span class="file-info">File format: CSV with values, one value for row</span>
+        </label>
+    </div>
+
+    <!-- Manual Input -->
+    <div class="manual-input-section">
+        <label for="batchDates" class="input-label">or paste here (one value for row):</label>
+        <textarea id="importValues" class="batch-input" 
+                  placeholder="124044&#10;123365&#10;124274"></textarea>
+    </div>
+
+    <button id="importDS" class="convert-button">Import Data</button>
+</body>
+</html>

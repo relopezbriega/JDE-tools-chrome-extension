@@ -1,9 +1,8 @@
 {
     "name": "jde-tools-chrome-extension",
-    "description": "Chrome extension for JDE tools - Julian date converter and batch report utilities",
+    "description": "JDE tools - Julian date converter and batch DS list import tools. You can easily convert julian dates and import DS lists of values into JDE.",
     "authors": "Raul E Lopez Briega",
     "version": "1.0.0",
     "license": "MIT",
-    "main": "/src",
-    "dependencies": {}
+    "main": "/src"
 }
