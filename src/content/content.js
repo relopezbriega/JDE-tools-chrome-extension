@@ -6,7 +6,7 @@ function JDE_DS_import() {
     const iframeBody = iframeObj?.document?.body?.innerHTML;
 
     if (iframeBody === undefined) {
-        alert("Unable to determine if this is a data selection page");
+        alert("This is no a JD Edwards Data selection page. Please open a Data Selection page and try again.");
     } else {
 
         createPopup();
