@@ -1,4 +1,4 @@
-import { toJDEJulianDate, toGregoDate } from '../utils/julian-date.js';  // Import the julian-date.js file
+import { toJDEJulianDate, toGregoDate } from '../utils/julian-date.js';  
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const julianDate = toJDEJulianDate(formatDate);
     const gregoDate = toGregoDate(julianDate);
     
-    console.log(julianDate);
     
     julianDisplay.textContent = `Julian Date is: ${julianDate}`;
     gregoDisplay.textContent = `The Date is: ${gregoDate}`;
@@ -53,26 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.getElementById('openDSIframe').addEventListener('click', (event) => {
-        event.preventDefault();
+    document.getElementById('openDSIframe').addEventListener('click', async () => {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });    
     
-        const width = 600;
-        const height = 800;
-        const left = screen.width/2;
-        const top = 20;
-    
-        const popup = window.open(
-            chrome.runtime.getURL('/src/iframe/iframe-ds-import.html'),
-            'FloatingIframe',
-            `width=${width},height=${height},left=${left},top=${top},resizable=yes`
-        );
-    
-        if (!popup) {
-            alert('Allow popup windows for using this functionality.');
-        }
+        chrome.tabs.sendMessage(tab.id, "JDE_DS_import" , (response) => {
+            if (chrome.runtime.lastError) {
+                console.error('Error sending message:', chrome.runtime.lastError.message);
+            } else {
+                console.log(response.status);
+            }
+        });
     });
+    
 
     
 });
-
-

@@ -1,5 +1,18 @@
-// background.js
+// Create a context menu item
 
-chrome.runtime.onInstalled.addListener(() => {
-    console.log('Extension installed');
+const contextMenuId = "jdetools-ds-import";
+
+chrome.contextMenus.create({
+  id: contextMenuId,
+  title: "JDE Batch DS Import tool",
+  contexts: ["all"],
+});
+
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
+  const { menuItemId } = info;
+  if (menuItemId === contextMenuId) {
+    (async () => {
+      const response = await chrome.tabs.sendMessage(tab.id, "JDE_DS_import");
+    })();
+  }
 });
