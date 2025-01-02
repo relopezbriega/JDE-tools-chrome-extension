@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "JDE Tools",
     "version": "1.0",
-    "description": "JDE tools - Julian date converter and batch DS list import tools. You can easily convert julian dates and import DS lists of values into JDE.",
+    "description": "JDE tools - Julian date converter and batch DS import tool. Convert julian dates and import DS values into JDE.",
     "permissions": [
         "activeTab",
         "contextMenus"
@@ -12,7 +12,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["<all_urls>"],
+            "matches": [ "http://*/*", "https://*/*" ],
             "js": ["src/content/content.js"]
         }
     ],
