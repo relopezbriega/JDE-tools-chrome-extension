@@ -5,8 +5,6 @@
     "description": "JDE tools - Julian date converter and batch DS list import tools. You can easily convert julian dates and import DS lists of values into JDE.",
     "permissions": [
         "activeTab",
-        "scripting",
-        "storage",
         "contextMenus"
     ],
     "background": {

@@ -203,6 +203,7 @@ function createPopup() {
     // Cerrar popup con el botón de cerrar
     doc.querySelector('.close-btn').onclick = () => {
         popup.remove();
+        blanket.remove();
         style.remove();
     };
 }
@@ -224,7 +225,7 @@ function data_import(inpVals) {
 			times = clearTimeout(times);
 			var e2 = document.getElementById('blanket');
 			e2.parentNode.removeChild(e2);
-			var e1 = document.getElementById('popUpDiv');
+			var e1 = document.getElementById('JDEcustomPopup');
 			e1.parentNode.removeChild(e1);
 			}
         else {
